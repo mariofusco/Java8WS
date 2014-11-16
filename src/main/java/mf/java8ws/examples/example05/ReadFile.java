@@ -1,8 +1,9 @@
 package mf.java8ws.examples.example05;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 public class ReadFile {
 
@@ -12,11 +13,10 @@ public class ReadFile {
     }
 
     private static long calculateUniqueWords(String fileName) {
-        try {
-            return Files.lines(Paths.get(fileName))
-                        .flatMap(line -> Arrays.stream(line.split(" ")))
-                        .distinct()
-                        .count();
+        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+            return stream.flatMap(line -> Stream.of(line.split(" ")))
+                         .distinct()
+                         .count();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

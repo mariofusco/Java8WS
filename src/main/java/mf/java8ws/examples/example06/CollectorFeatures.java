@@ -19,7 +19,6 @@ public class CollectorFeatures {
     }
 
     private static Map<Dish.Type, Dish> mostCaloricDishByType() {
-        BinaryOperator<Dish> binOp = BinaryOperator.maxBy(comparingInt(Dish::getCalories));
         return menu.stream().collect(groupingBy(Dish::getType,
                 collectingAndThen(
                         reducing(BinaryOperator.maxBy(comparingInt(Dish::getCalories))), Optional::get)));

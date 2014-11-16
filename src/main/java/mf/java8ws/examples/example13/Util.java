@@ -31,7 +31,7 @@ public class Util {
 
     public static <T> CompletableFuture<List<T>> sequence(List<CompletableFuture<T>> futures) {
         return CompletableFuture.supplyAsync(() -> futures.stream()
-                                                          .map(future -> future.join())
+                                                          .map(CompletableFuture::join)
                                                           .collect(Collectors.<T>toList()));
     }
 }
