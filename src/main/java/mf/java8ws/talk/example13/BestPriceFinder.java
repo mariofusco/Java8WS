@@ -24,7 +24,6 @@ public class BestPriceFinder {
         }
     });
 
-
     public List<String> findPriceSequential(String product) {
         return shops.stream()
                 .map(shop -> shop.getName() + " price is " + shop.getPriceFor(product))
@@ -38,4 +37,5 @@ public class BestPriceFinder {
     public List<String> findPrice(String product) {
         return null;
     }
+
 }

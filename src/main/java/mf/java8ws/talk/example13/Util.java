@@ -34,4 +34,8 @@ public class Util {
                                                           .map(future -> future.join())
                                                           .collect(Collectors.<T>toList()));
     }
+
+    public static long timeSince(long nanoStart) {
+        return (System.nanoTime() - nanoStart) / 1_000_000;
+    }
 }
